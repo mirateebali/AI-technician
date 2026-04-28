@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Technician</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:system-ui,sans-serif;background:#f0ede6;height:100vh;display:flex;flex-direction:column;overflow:hidden;background-image:linear-gradient(rgba(27,42,74,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(27,42,74,0.06) 1px,transparent 1px);background-size:32px 32px;}
+header{background:#1b2a4a;padding:0 22px;display:flex;align-items:center;gap:11px;height:52px;flex-shrink:0;border-bottom:3px solid #d4860a;}
+.logo-icon{width:30px;height:30px;background:#d4860a;border-radius:5px;display:grid;place-items:center;font-size:15px;flex-shrink:0;}
+.logo-text{font-size:15px;font-weight:700;color:#fff;}
+.logo-text span{color:#f5a623;}
+.hdr-badge{display:none;margin-left:auto;background:rgba(212,134,10,0.2);border:1px solid #d4860a;border-radius:20px;padding:3px 10px;font-size:10px;color:#f5a623;align-items:center;gap:5px;font-family:monospace;}
+.hdr-dot{width:5px;height:5px;border-radius:50%;background:#f5a623;}
+.main{display:flex;flex:1;overflow:hidden;}
+aside{width:245px;flex-shrink:0;background:#faf8f3;border-right:2px solid #c8c0ad;display:flex;flex-direction:column;overflow-y:auto;}
+.side-sec{padding:15px;border-bottom:1px solid #c8c0ad;}
+.sec-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a8070;margin-bottom:9px;font-family:monospace;}
+.drop-zone{border:2px dashed #9e9585;border-radius:9px;padding:18px 10px;text-align:center;cursor:pointer;background:#f0ede6;transition:all .2s;}
+.drop-zone:hover{border-color:#d4860a;background:rgba(212,134,10,0.04);}
+.drop-zone input{display:none;}
+.file-card{display:none;background:#1b2a4a;border-radius:8px;padding:9px 11px;margin-top:9px;}
+.file-card.show{display:block;}
+.file-name{font-size:11px;font-weight:700;color:#f5a623;word-break:break-all;margin-bottom:2px;}
+.file-meta{font-size:9px;color:rgba(255,255,255,0.4);font-family:monospace;}
+.sug-btn{display:block;width:100%;background:#f0ede6;border:1px solid #c8c0ad;color:#4a5568;font-size:11px;text-align:left;padding:7px 9px;border-radius:7px;cursor:not-allowed;margin-bottom:5px;line-height:1.4;font-family:inherit;}
+.sug-btn:not(:disabled){cursor:pointer;}
+.sug-btn:not(:disabled):hover{border-color:#d4860a;background:rgba(212,134,10,0.05);}
+.sug-btn:disabled{opacity:.35;}
+.clr-btn{margin:0 15px 15px;background:none;border:1px solid #c8c0ad;color:#8a8070;font-size:10px;padding:6px 10px;border-radius:6px;cursor:pointer;width:calc(100% - 30px);font-family:monospace;}
+.clr-btn:hover{border-color:#c0392b;color:#c0392b;}
+.chat{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.msgs{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:14px;}
+.msgs::-webkit-scrollbar{width:3px;}
+.msgs::-webkit-scrollbar-thumb{background:#c8c0ad;}
+.empty{margin:auto;text-align:center;padding:36px;}
+.msg{display:flex;gap:9px;align-items:flex-start;}
+.msg.user{flex-direction:row-reverse;}
+.av{width:28px;height:28px;border-radius:6px;display:grid;place-items:center;font-size:9px;font-weight:700;flex-shrink:0;}
+.av.u{background:#1b2a4a;color:#f5a623;}
+.av.a{background:#d4860a;color:#1b2a4a;font-size:13px;}
+.bbl{max-width:65%;padding:10px 13px;border-radius:10px;font-size:13px;line-height:1.65;border:1px solid #c8c0ad;}
+.msg.user .bbl{background:#1b2a4a;color:#fff;border-color:#1b2a4a;border-top-right-radius:2px;}
+.msg:not(.user) .bbl{background:#fdfcf8;color:#1b2a4a;border-top-left-radius:2px;}
+.bbl-lbl{font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;opacity:.4;font-family:monospace;}
+.typing{display:flex;gap:4px;padding:3px 0;}
+.typing span{width:6px;height:6px;border-radius:50%;background:#d4860a;animation:tdot 1s infinite;}
+.typing span:nth-child(2){animation-delay:.15s;}
+.typing span:nth-child(3){animation-delay:.3s;}
+@keyframes tdot{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-4px);opacity:1}}
+.inp-area{padding:10px 18px 14px;background:#faf8f3;border-top:2px solid #c8c0ad;flex-shrink:0;}
+.inp-err{background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.3);border-radius:7px;padding:7px 10px;font-size:11px;color:#c0392b;font-family:monospace;margin-bottom:8px;display:none;}
+.inp-row{display:flex;align-items:flex-end;gap:8px;background:#fdfcf8;border:2px solid #c8c0ad;border-radius:10px;padding:8px 10px;}
+.inp-row:focus-within{border-color:#1b2a4a;}
+textarea{flex:1;background:none;border:none;outline:none;color:#1b2a4a;font-size:13px;resize:none;max-height:100px;line-height:1.5;font-family:inherit;}
+textarea::placeholder{color:#8a8070;}
+.send{background:#1b2a4a;border:none;border-radius:7px;width:34px;height:34px;display:grid;place-items:center;font-size:13px;color:#f5a623;flex-shrink:0;cursor:not-allowed;}
+.send:not(:disabled){cursor:pointer;}
+.send:not(:disabled):hover{background:#2d4070;}
+.inp-hint{font-size:10px;color:#8a8070;font-family:monospace;margin-top:6px;text-align:center;}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo-icon">🔧</div>
+  <div class="logo-text">AI <span>Technician</span></div>
+  <div class="hdr-badge" id="badge"><div class="hdr-dot"></div><span id="badgeTxt"></span></div>
+</header>
+<div class="main">
+  <aside>
+    <div class="side-sec">
+      <div class="sec-lbl">Manual Upload</div>
+      <div class="drop-zone" id="dz" onclick="document.getElementById('fi').click()" ondragover="event.preventDefault();this.style.borderColor='#d4860a'" ondragleave="this.style.borderColor=''" ondrop="event.preventDefault();this.style.borderColor='';loadFile(event.dataTransfer.files[0])">
+        <input type="file" id="fi" accept=".pdf,.txt,.md,.docx" onchange="loadFile(this.files[0])">
+        <div style="font-size:24px;margin-bottom:5px;">📄</div>
+        <div style="font-size:12px;font-weight:700;color:#1b2a4a;margin-bottom:2px;">Drop manual here</div>
+        <div style="font-size:10px;color:#8a8070;font-family:monospace;">PDF · TXT · MD · DOCX</div>
+      </div>
+      <div class="file-card" id="fc">
+        <div class="file-name" id="fn"></div>
+        <div class="file-meta" id="fm"></div>
+      </div>
+    </div>
+    <div class="side-sec" style="flex:1;overflow-y:auto;">
+      <div class="sec-lbl">Quick Questions</div>
+      <button class="sug-btn" disabled onclick="ask(this)">What is this machine used for?</button>
+      <button class="sug-btn" disabled onclick="ask(this)">What are the safety warnings?</button>
+      <button class="sug-btn" disabled onclick="ask(this)">How do I perform initial setup?</button>
+      <button class="sug-btn" disabled onclick="ask(this)">What maintenance is required?</button>
+      <button class="sug-btn" disabled onclick="ask(this)">What do error codes mean?</button>
+      <button class="sug-btn" disabled onclick="ask(this)">List technical specifications</button>
+      <button class="sug-btn" disabled onclick="ask(this)">What parts need replacement?</button>
+    </div>
+    <button class="clr-btn" onclick="clearChat()">✕ Clear conversation</button>
+  </aside>
+  <div class="chat">
+    <div class="msgs" id="msgs">
+      <div class="empty">
+        <div style="font-size:46px;margin-bottom:12px;">🔩</div>
+        <div style="font-size:20px;font-weight:700;color:#1b2a4a;margin-bottom:6px;">Upload a machine manual</div>
+        <div style="font-size:13px;color:#8a8070;max-width:230px;margin:0 auto;line-height:1.6;">I'll read it and answer any technical question you have about it.</div>
+      </div>
+    </div>
+    <div class="inp-area">
+      <div class="inp-err" id="err"></div>
+      <div class="inp-row">
+        <textarea id="q" rows="1" placeholder="Ask about your machine…" disabled
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();send();}"
+          oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px'"></textarea>
+        <button class="send" id="sb" disabled onclick="send()">➤</button>
+      </div>
+      <div class="inp-hint">Enter to send · Shift+Enter for new line</div>
+    </div>
+  </div>
+</div>
+<script>
+let manual=null,hist=[],busy=false;
+
+function loadFile(file){
+  if(!file)return;
+  const mb=(file.size/1024/1024).toFixed(2);
+  document.getElementById('fn').textContent=file.name;
+  document.getElementById('fm').textContent=mb+' MB · Ready';
+  document.getElementById('fc').classList.add('show');
+  const b=document.getElementById('badge');
+  document.getElementById('badgeTxt').textContent=file.name.length>24?file.name.slice(0,24)+'…':file.name;
+  b.style.display='flex';
+  if(file.name.endsWith('.pdf')||file.type==='application/pdf'){
+    const r=new FileReader();r.onload=e=>{manual={type:'pdf',name:file.name,data:e.target.result.split(',')[1]};ready();};r.readAsDataURL(file);
+  } else {
+    const r=new FileReader();r.onload=e=>{manual={type:'text',name:file.name,data:e.target.result};ready();};r.readAsText(file);
+  }
+}
+
+function ready(){
+  document.getElementById('q').disabled=false;
+  const sb=document.getElementById('sb');sb.disabled=false;
+  document.querySelectorAll('.sug-btn').forEach(b=>{b.disabled=false;});
+  hist=[];
+  const c=document.getElementById('msgs');c.innerHTML='';
+  addMsg('ai','Manual loaded: <strong>'+manual.name+'</strong><br><br>Ready to help! Ask me anything — setup, safety warnings, error codes, maintenance, or specs.');
+}
+
+function buildContent(q){
+  if(manual.type==='pdf') return [{type:'document',source:{type:'base64',media_type:'application/pdf',data:manual.data}},{type:'text',text:q}];
+  return 'Machine manual:\n\n---\n'+manual.data+'\n---\n\nQuestion: '+q;
+}
+
+async function send(q){
+  const inp=document.getElementById('q');
+  const question=(q||inp.value).trim();
+  if(!question||busy||!manual)return;
+  document.getElementById('err').style.display='none';
+  inp.value='';inp.style.height='auto';
+  addMsg('user',question);
+  const tid=addTyping();
+  busy=true;document.getElementById('sb').disabled=true;
+  const isFirst=hist.length===0;
+  const content=isFirst?buildContent(question):question;
+  const msgs=[...hist,{role:'user',content}];
+  try{
+    const res=await fetch('/api/chat',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-opus-4-6',max_tokens:1024,
+        system:'You are AI Technician. Answer questions about the uploaded machine manual precisely. Use numbered steps for procedures. If info is not in the manual, say so clearly.',
+        messages:msgs})
+    });
+    const data=await res.json();
+    rmTyping(tid);
+    if(data.error){showErr(data.error.message);busy=false;document.getElementById('sb').disabled=false;return;}
+    const reply=data.content.map(b=>b.text||'').join('');
+    hist=[...msgs,{role:'assistant',content:reply}];
+    addMsg('ai',reply.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'));
+  }catch(err){rmTyping(tid);showErr(err.message);}
+  busy=false;document.getElementById('sb').disabled=false;
+}
+
+function ask(btn){send(btn.textContent.trim());}
+
+function addMsg(role,html){
+  const c=document.getElementById('msgs');
+  const d=document.createElement('div');d.className='msg'+(role==='user'?' user':'');
+  const av=document.createElement('div');av.className='av '+(role==='user'?'u':'a');av.textContent=role==='user'?'YOU':'🔧';
+  const bbl=document.createElement('div');bbl.className='bbl';
+  const lbl=document.createElement('div');lbl.className='bbl-lbl';lbl.textContent=role==='user'?'You':'AI Technician';
+  const txt=document.createElement('div');txt.innerHTML=html;
+  bbl.appendChild(lbl);bbl.appendChild(txt);d.appendChild(av);d.appendChild(bbl);c.appendChild(d);
+  c.scrollTop=c.scrollHeight;
+}
+
+function addTyping(){
+  const c=document.getElementById('msgs');const id='t'+Date.now();
+  const d=document.createElement('div');d.id=id;d.className='msg';
+  d.innerHTML='<div class="av a">🔧</div><div class="bbl" style="border-top-left-radius:2px;"><div class="bbl-lbl">AI Technician</div><div class="typing"><span></span><span></span><span></span></div></div>';
+  c.appendChild(d);c.scrollTop=c.scrollHeight;return id;
+}
+function rmTyping(id){const e=document.getElementById(id);if(e)e.remove();}
+function showErr(m){const e=document.getElementById('err');e.textContent='Error: '+m;e.style.display='block';}
+function clearChat(){hist=[];const c=document.getElementById('msgs');c.innerHTML='';if(manual)addMsg('ai','Cleared. <strong>'+manual.name+'</strong> still loaded!');}
+</script>
+</body>
+</html>
