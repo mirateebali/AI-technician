@@ -12,7 +12,6 @@ header{background:#1b2a4a;padding:0 22px;display:flex;align-items:center;gap:11p
 .logo-text{font-size:15px;font-weight:700;color:#fff;}
 .logo-text span{color:#f5a623;}
 .hdr-badge{display:none;margin-left:auto;background:rgba(212,134,10,0.2);border:1px solid #d4860a;border-radius:20px;padding:3px 10px;font-size:10px;color:#f5a623;align-items:center;gap:5px;font-family:monospace;}
-.hdr-dot{width:5px;height:5px;border-radius:50%;background:#f5a623;}
 .main{display:flex;flex:1;overflow:hidden;}
 aside{width:245px;flex-shrink:0;background:#faf8f3;border-right:2px solid #c8c0ad;display:flex;flex-direction:column;overflow-y:auto;}
 .side-sec{padding:15px;border-bottom:1px solid #c8c0ad;}
@@ -40,10 +39,10 @@ aside{width:245px;flex-shrink:0;background:#faf8f3;border-right:2px solid #c8c0a
 .av{width:28px;height:28px;border-radius:6px;display:grid;place-items:center;font-size:9px;font-weight:700;flex-shrink:0;}
 .av.u{background:#1b2a4a;color:#f5a623;}
 .av.a{background:#d4860a;color:#1b2a4a;font-size:13px;}
-.bbl{max-width:65%;padding:10px 13px;border-radius:10px;font-size:13px;line-height:1.65;border:1px solid #c8c0ad;}
+.bbl{max-width:72%;padding:12px 14px;border-radius:10px;font-size:13px;line-height:1.65;border:1px solid #c8c0ad;}
 .msg.user .bbl{background:#1b2a4a;color:#fff;border-color:#1b2a4a;border-top-right-radius:2px;}
 .msg:not(.user) .bbl{background:#fdfcf8;color:#1b2a4a;border-top-left-radius:2px;}
-.bbl-lbl{font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;opacity:.4;font-family:monospace;}
+.bbl-lbl{font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;opacity:.4;font-family:monospace;}
 .typing{display:flex;gap:4px;padding:3px 0;}
 .typing span{width:6px;height:6px;border-radius:50%;background:#d4860a;animation:tdot 1s infinite;}
 .typing span:nth-child(2){animation-delay:.15s;}
@@ -59,13 +58,48 @@ textarea::placeholder{color:#8a8070;}
 .send:not(:disabled){cursor:pointer;}
 .send:not(:disabled):hover{background:#2d4070;}
 .inp-hint{font-size:10px;color:#8a8070;font-family:monospace;margin-top:6px;text-align:center;}
+.r-intro{font-size:13px;line-height:1.65;margin-bottom:10px;color:#1b2a4a;}
+.r-steps{display:flex;flex-direction:column;gap:8px;margin:10px 0;}
+.r-step{display:flex;gap:10px;align-items:flex-start;background:#f5f3ee;border-radius:9px;padding:10px 12px;border-left:3px solid #d4860a;}
+.r-step-num{width:22px;height:22px;border-radius:50%;background:#1b2a4a;color:#f5a623;font-size:11px;font-weight:700;display:grid;place-items:center;flex-shrink:0;margin-top:1px;}
+.r-step-body{flex:1;}
+.r-step-title{font-size:12px;font-weight:700;color:#1b2a4a;margin-bottom:2px;}
+.r-step-desc{font-size:12px;color:#4a5568;line-height:1.5;}
+.r-step-tip{font-size:11px;color:#d4860a;margin-top:4px;font-style:italic;}
+.r-warn{display:flex;gap:10px;align-items:flex-start;background:#fff3cd;border:1px solid #f5a623;border-radius:9px;padding:10px 12px;margin:8px 0;}
+.r-warn.danger{background:#fde8e8;border-color:#c0392b;}
+.r-warn.info{background:#e8f4fd;border-color:#2980b9;}
+.r-warn.success{background:#e8f8ee;border-color:#27ae60;}
+.r-warn-icon{font-size:18px;flex-shrink:0;}
+.r-warn-body{flex:1;}
+.r-warn-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+.r-warn.danger .r-warn-title{color:#c0392b;}
+.r-warn.info .r-warn-title{color:#2980b9;}
+.r-warn.success .r-warn-title{color:#27ae60;}
+.r-warn:not(.danger):not(.info):not(.success) .r-warn-title{color:#d4860a;}
+.r-warn-text{font-size:12px;color:#4a5568;line-height:1.5;}
+.r-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0;}
+.r-card{background:#f5f3ee;border:1px solid #c8c0ad;border-radius:9px;padding:10px 12px;}
+.r-card-icon{font-size:20px;margin-bottom:5px;}
+.r-card-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#8a8070;margin-bottom:3px;}
+.r-card-value{font-size:13px;font-weight:700;color:#1b2a4a;line-height:1.4;}
+.r-section{margin:10px 0;}
+.r-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#8a8070;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.r-section-title::after{content:'';flex:1;height:1px;background:#c8c0ad;}
+.r-bullets{display:flex;flex-direction:column;gap:5px;margin:8px 0;}
+.r-bullet{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:#4a5568;line-height:1.5;}
+.r-bullet::before{content:'→';color:#d4860a;font-weight:700;flex-shrink:0;margin-top:1px;}
+.r-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12px;}
+.r-table th{background:#1b2a4a;color:#fff;padding:6px 10px;text-align:left;font-size:11px;}
+.r-table td{padding:6px 10px;border-bottom:1px solid #e8e4dc;color:#2d3748;}
+.r-table tr:nth-child(even) td{background:#f5f3ee;}
 </style>
 </head>
 <body>
 <header>
   <div class="logo-icon">🔧</div>
   <div class="logo-text">AI <span>Technician</span></div>
-  <div class="hdr-badge" id="badge"><div class="hdr-dot"></div><span id="badgeTxt"></span></div>
+  <div class="hdr-badge" id="badge"><div style="width:5px;height:5px;border-radius:50%;background:#f5a623;flex-shrink:0;border-radius:50%;"></div><span id="badgeTxt"></span></div>
 </header>
 <div class="main">
   <aside>
@@ -123,9 +157,8 @@ function loadFile(file){
   document.getElementById('fn').textContent=file.name;
   document.getElementById('fm').textContent=mb+' MB · Ready';
   document.getElementById('fc').classList.add('show');
-  const b=document.getElementById('badge');
   document.getElementById('badgeTxt').textContent=file.name.length>24?file.name.slice(0,24)+'…':file.name;
-  b.style.display='flex';
+  document.getElementById('badge').style.display='flex';
   if(file.name.endsWith('.pdf')||file.type==='application/pdf'){
     const r=new FileReader();r.onload=e=>{manual={type:'pdf',name:file.name,data:e.target.result.split(',')[1]};ready();};r.readAsDataURL(file);
   } else {
@@ -135,17 +168,48 @@ function loadFile(file){
 
 function ready(){
   document.getElementById('q').disabled=false;
-  const sb=document.getElementById('sb');sb.disabled=false;
-  document.querySelectorAll('.sug-btn').forEach(b=>{b.disabled=false;});
+  document.getElementById('sb').disabled=false;
+  document.querySelectorAll('.sug-btn').forEach(b=>b.disabled=false);
   hist=[];
   const c=document.getElementById('msgs');c.innerHTML='';
-  addMsg('ai','Manual loaded: <strong>'+manual.name+'</strong><br><br>Ready to help! Ask me anything — setup, safety warnings, error codes, maintenance, or specs.');
+  addRichMsg('ai',renderWelcome(manual.name));
+}
+
+function renderWelcome(name){
+  return `<div class="r-intro">Manual loaded and ready to go.</div>
+<div class="r-warn success"><div class="r-warn-icon">✅</div><div class="r-warn-body"><div class="r-warn-title">Ready</div><div class="r-warn-text"><strong>${name}</strong> — Ask me anything about this machine.</div></div></div>
+<div class="r-bullets"><div class="r-bullet">Setup and startup procedures</div><div class="r-bullet">Safety warnings and precautions</div><div class="r-bullet">Error codes and how to fix them</div><div class="r-bullet">Maintenance schedules</div><div class="r-bullet">Training requirements</div></div>`;
 }
 
 function buildContent(q){
   if(manual.type==='pdf') return [{type:'document',source:{type:'base64',media_type:'application/pdf',data:manual.data}},{type:'text',text:q}];
   return 'Machine manual:\n\n---\n'+manual.data+'\n---\n\nQuestion: '+q;
 }
+
+const SYSTEM=`You are an experienced manufacturing technician and trainer. You know this machine inside and out.
+
+YOU MUST RESPOND WITH ONLY A JSON OBJECT. NO EXCEPTIONS. NO MARKDOWN. NO PROSE. JUST THE RAW JSON OBJECT STARTING WITH { AND ENDING WITH }.
+
+Required JSON structure:
+{
+  "intro": "1-2 sentence human opening. Sound like a knowledgeable colleague. Use phrases like Here is the thing or Good question or So here is what you do.",
+  "alert": { "type": "danger", "title": "short title", "text": "alert detail" },
+  "steps": [{ "title": "short action title", "desc": "full instruction", "tip": "pro tip or common mistake — empty string if none" }],
+  "bullets": ["point 1", "point 2"],
+  "cards": [{ "icon": "emoji", "label": "LABEL", "value": "value" }],
+  "table": { "headers": ["Column 1", "Column 2"], "rows": [["cell", "cell"]] },
+  "closing": "one sentence next step or reminder"
+}
+
+RULES:
+- alert.type must be: danger, warning, info, or success. Omit alert field entirely if not needed.
+- steps: use for ANY numbered procedure. Add a tip for steps where people make mistakes.
+- bullets: use for non-sequential lists.
+- cards: use for 2-4 key specs or facts with emoji icons.
+- table: use for error codes, maintenance schedules, training levels.
+- Empty unused arrays as []. Omit unused object fields.
+- NO markdown inside values. No ##, no **, no ---, no backticks.
+- Base answers only on the manual content. Never invent specs or steps.`;
 
 async function send(q){
   const inp=document.getElementById('q');
@@ -163,22 +227,121 @@ async function send(q){
     const res=await fetch('/api/chat',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-opus-4-6',max_tokens:1024,
-        system:'You are AI Technician. Answer questions about the uploaded machine manual precisely. Use numbered steps for procedures. If info is not in the manual, say so clearly.',
-        messages:msgs})
+      body:JSON.stringify({model:'claude-opus-4-6',max_tokens:2048,system:SYSTEM,messages:msgs})
     });
     const data=await res.json();
     rmTyping(tid);
     if(data.error){showErr(data.error.message);busy=false;document.getElementById('sb').disabled=false;return;}
-    const reply=data.content.map(b=>b.text||'').join('');
-    hist=[...msgs,{role:'assistant',content:reply}];
-    addMsg('ai',reply.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'));
-  }catch(err){rmTyping(tid);showErr(err.message);}
+    const raw=data.content.map(b=>b.text||'').join('');
+    hist=[...msgs,{role:'assistant',content:raw}];
+    let parsed;
+    try{
+      const clean=raw.replace(/```json\n?|```\n?/g,'').trim();
+      parsed=JSON.parse(clean);
+    }catch(e){
+      addRichMsg('ai',mdToVisual(raw));
+      busy=false;document.getElementById('sb').disabled=false;
+      return;
+    }
+    addRichMsg('ai',renderResponse(parsed));
+  }catch(e){rmTyping(tid);showErr(e.message);}
   busy=false;document.getElementById('sb').disabled=false;
 }
 
-function ask(btn){send(btn.textContent.trim());}
+function renderResponse(d){
+  let html='';
+  if(d.intro) html+=`<div class="r-intro">${d.intro}</div>`;
+  if(d.alert&&d.alert.type){
+    const icons={danger:'🚨',warning:'⚠️',info:'ℹ️',success:'✅'};
+    html+=`<div class="r-warn ${d.alert.type}"><div class="r-warn-icon">${icons[d.alert.type]||'⚠️'}</div><div class="r-warn-body"><div class="r-warn-title">${d.alert.title||''}</div><div class="r-warn-text">${d.alert.text||''}</div></div></div>`;
+  }
+  if(d.steps&&d.steps.length){
+    html+=`<div class="r-section"><div class="r-section-title">Steps</div><div class="r-steps">`;
+    d.steps.forEach((s,i)=>{
+      html+=`<div class="r-step"><div class="r-step-num">${i+1}</div><div class="r-step-body"><div class="r-step-title">${s.title||''}</div><div class="r-step-desc">${s.desc||''}</div>${s.tip?`<div class="r-step-tip">💡 ${s.tip}</div>`:''}</div></div>`;
+    });
+    html+=`</div></div>`;
+  }
+  if(d.bullets&&d.bullets.length){
+    html+=`<div class="r-bullets">`;
+    d.bullets.forEach(b=>{html+=`<div class="r-bullet">${b}</div>`;});
+    html+=`</div>`;
+  }
+  if(d.cards&&d.cards.length){
+    html+=`<div class="r-cards">`;
+    d.cards.forEach(c=>{html+=`<div class="r-card"><div class="r-card-icon">${c.icon||'📌'}</div><div class="r-card-label">${c.label||''}</div><div class="r-card-value">${c.value||''}</div></div>`;});
+    html+=`</div>`;
+  }
+  if(d.table&&d.table.headers&&d.table.headers.length){
+    html+=`<table class="r-table"><thead><tr>${d.table.headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>`;
+    (d.table.rows||[]).forEach(row=>{html+=`<tr>${row.map(c=>`<td>${c}</td>`).join('')}</tr>`;});
+    html+=`</tbody></table>`;
+  }
+  if(d.closing) html+=`<div style="font-size:12px;color:#8a8070;margin-top:8px;font-style:italic;">${d.closing}</div>`;
+  return html;
+}
 
+function mdToVisual(md){
+  let html='';
+  const lines=md.split('\n');
+  let inTable=false,tableHeaders=[],tableRows=[];
+  for(let i=0;i<lines.length;i++){
+    let line=lines[i].trim();
+    if(!line||line==='---')continue;
+    if(line.startsWith('### ')){
+      const txt=line.replace(/^###\s*/,'').replace(/\*\*/g,'');
+      const m=txt.match(/^(\d+)\.\s+(.*)/);
+      if(m){
+        const desc=lines[i+1]?lines[i+1].trim().replace(/^[-•]\s*/,''):'';
+        html+=`<div class="r-step"><div class="r-step-num">${m[1]}</div><div class="r-step-body"><div class="r-step-title">${m[2]}</div>${desc?`<div class="r-step-desc">${desc}</div>`:''}</div></div>`;
+        if(desc)i++;
+      } else {
+        html+=`<div class="r-section"><div class="r-section-title">${txt}</div></div>`;
+      }
+      continue;
+    }
+    if(line.startsWith('## ')||line.startsWith('# ')){
+      const txt=line.replace(/^#+\s*/,'').replace(/\*\*/g,'');
+      html+=`<div class="r-section"><div class="r-section-title">${txt}</div></div>`;
+      continue;
+    }
+    const nm=line.match(/^(\d+)\.\s+(.*)/);
+    if(nm){
+      html+=`<div class="r-step"><div class="r-step-num">${nm[1]}</div><div class="r-step-body"><div class="r-step-title">${nm[2].replace(/\*\*/g,'')}</div></div></div>`;
+      continue;
+    }
+    if(line.startsWith('- ')||line.startsWith('* ')){
+      const txt=line.replace(/^[-*]\s*/,'').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+      if(/loto|e-stop|danger|do not|never|must not/i.test(txt)){
+        html+=`<div class="r-warn danger" style="margin:3px 0;padding:7px 10px;"><div class="r-warn-icon" style="font-size:14px;">🚨</div><div class="r-warn-body"><div class="r-warn-text" style="font-size:12px;">${txt}</div></div></div>`;
+      } else {
+        html+=`<div class="r-bullet">${txt}</div>`;
+      }
+      continue;
+    }
+    if(line.startsWith('|')){
+      const cells=line.split('|').map(c=>c.trim()).filter(c=>c&&!c.match(/^[-]+$/));
+      if(cells.length){
+        if(!inTable){inTable=true;tableHeaders=cells;tableRows=[];}
+        else if(!line.match(/^\|[-|\s]+\|$/)){tableRows.push(cells);}
+        const next=lines[i+1]?lines[i+1].trim():'';
+        if(!next.startsWith('|')&&inTable&&tableHeaders.length){
+          html+=`<table class="r-table"><thead><tr>${tableHeaders.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>`;
+          tableRows.forEach(r=>{html+=`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`;});
+          html+=`</tbody></table>`;
+          inTable=false;tableHeaders=[];tableRows=[];
+        }
+      }
+      continue;
+    }
+    if(line.length>2){
+      html+=`<div class="r-intro" style="margin-bottom:6px;">${line.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')}</div>`;
+    }
+  }
+  return html||`<div class="r-intro">${md}</div>`;
+}
+
+function ask(btn){send(btn.textContent.trim());}
 function addMsg(role,html){
   const c=document.getElementById('msgs');
   const d=document.createElement('div');d.className='msg'+(role==='user'?' user':'');
@@ -189,7 +352,16 @@ function addMsg(role,html){
   bbl.appendChild(lbl);bbl.appendChild(txt);d.appendChild(av);d.appendChild(bbl);c.appendChild(d);
   c.scrollTop=c.scrollHeight;
 }
-
+function addRichMsg(role,html){
+  const c=document.getElementById('msgs');
+  const d=document.createElement('div');d.className='msg'+(role==='user'?' user':'');
+  const av=document.createElement('div');av.className='av '+(role==='user'?'u':'a');av.textContent=role==='user'?'YOU':'🔧';
+  const bbl=document.createElement('div');bbl.className='bbl';bbl.style.maxWidth='78%';
+  const lbl=document.createElement('div');lbl.className='bbl-lbl';lbl.textContent=role==='user'?'You':'AI Technician';
+  const txt=document.createElement('div');txt.innerHTML=html;
+  bbl.appendChild(lbl);bbl.appendChild(txt);d.appendChild(av);d.appendChild(bbl);c.appendChild(d);
+  c.scrollTop=c.scrollHeight;
+}
 function addTyping(){
   const c=document.getElementById('msgs');const id='t'+Date.now();
   const d=document.createElement('div');d.id=id;d.className='msg';
@@ -198,7 +370,7 @@ function addTyping(){
 }
 function rmTyping(id){const e=document.getElementById(id);if(e)e.remove();}
 function showErr(m){const e=document.getElementById('err');e.textContent='Error: '+m;e.style.display='block';}
-function clearChat(){hist=[];const c=document.getElementById('msgs');c.innerHTML='';if(manual)addMsg('ai','Cleared. <strong>'+manual.name+'</strong> still loaded!');}
+function clearChat(){hist=[];const c=document.getElementById('msgs');c.innerHTML='';if(manual)addRichMsg('ai',renderWelcome(manual.name));}
 </script>
 </body>
 </html>
